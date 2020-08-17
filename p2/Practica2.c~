@@ -1,0 +1,91 @@
+/*
+Sistemas Operativos
+Grupo 3.1
+Alberto Carreño Piñeiro alberto.carreno.pineiro
+Yago Fernandez Blanco yago.fernandez1
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+void asignar(char entrada[]){
+   char orden[8]="assign -";
+   char *instruccion=strstr(entrada, orden);
+   if(instruccion!=NULL){
+      if(strstr(instruccion, "malloc")!=NULL){
+         
+      }else if(strstr(instruccion, "mmap")!=NULL){
+         
+      }else if(strstr(instruccion, "shared")!=NULL){
+         
+      }
+   }else
+      
+}
+
+void imprimirpid(){
+   printf("Pid del proceso: %d\nPid del padre del proceso: %d\n\n", getpid(), getppid());
+}
+
+void autores(){
+   printf("Autores:\nAlberto Carreño Piñeiro, login: alberto.carreno.pineiro\nYago Fernandez Blanco, login: yago.fernandez1\n\n");
+}
+
+void gestionar(char entrada[]){
+   if (strcmp(entrada, "autores")==0){
+      autores();
+   }else if(strcmp(entrada, "pid")==0){
+      imprimirpid();
+   }else if(strstr(entrada, "assign")!=NULL){
+      asignar(entrada);
+   }else if(strstr(entrada, "deassign")!=NULL){
+      
+   }else if(strstr(entrada, "rmkey")!=NULL){
+      
+   }else if(strstr(entrada, "mem")!=NULL){
+      
+   }else if(strstr(entrada, "recursiva")!=NULL){
+      
+   }else if(strstr(entrada, "iofile")!=NULL){
+      
+   }else
+      printf("No ha intruducido ninguna operacion valida, intentelo de nuevo\n");
+}
+
+void limpiar_salto (char *cadena)
+{
+  char *p;
+  p = strchr (cadena, '\n');
+  if (p)
+    *p = '\0';
+}
+
+void shell(){
+   char entrada [50];
+   int salir=0;
+   printf("Bienvenido a la practica2\n-------------------------------\n");
+   do{
+      printf("Introduzca por teclado lo que desee hacer o introduzca exit para salir\n");
+      fgets (entrada, 50, stdin);
+      limpiar_salto(entrada);
+      if (strlen (entrada) == 0){
+         printf("No ha intruducido nada, vuelva a intentarlo\n");
+      }else if (strcmp(entrada, "exit")==0 || strcmp(entrada, "end")==0 || strcmp(entrada, "fin")==0)
+         salir=1;
+      else{
+         gestionar(entrada);
+      }
+   }while (salir!=1);
+}
+
+int main(){
+   shell();
+   return 0;
+}
+
+/*
+char[] x= nmap(null, tamaño fichero, proteccion, fichero, 0);
+numap(x);
+*/
